@@ -34,11 +34,39 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FirebirdSql.Data.FirebirdClient">
+      <HintPath>..\packages\FirebirdSql.Data.FirebirdClient.4.5.2.0\lib\net45\FirebirdSql.Data.FirebirdClient.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Mono.Security">
+      <HintPath>..\packages\Npgsql.2.2.3\lib\net45\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>..\packages\MySql.Data.6.9.5\lib\net45\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql">
+      <HintPath>..\packages\Npgsql.2.2.3\lib\net45\Npgsql.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite">
+      <HintPath>..\packages\System.Data.SQLite.Core.1.0.94.0\lib\net45\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6">
+      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.94.0\lib\net45\System.Data.SQLite.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq">
+      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.94.1\lib\net45\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
@@ -63,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Alceste.DAL\Alceste.DAL.csproj">
@@ -72,6 +101,14 @@
     <ProjectReference Include="..\Alceste.Model\Alceste.Model.csproj">
       <Project>{33da65e1-803a-4fd4-a9c3-126ecc3ac31d}</Project>
       <Name>Alceste.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Alceste.Plugin.Asterisk\Alceste.Plugin.Asterisk.csproj">
+      <Project>{32b637ad-7d48-43f6-be65-435225cdeb84}</Project>
+      <Name>Alceste.Plugin.Asterisk</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Alceste.Plugin.CiscoWin\Alceste.Plugin.CiscoWin.csproj">
+      <Project>{6e22b0e4-0460-449c-9d74-3d157dbc0b74}</Project>
+      <Name>Alceste.Plugin.CiscoWin</Name>
     </ProjectReference>
     <ProjectReference Include="..\Alceste.Plugin\Alceste.Plugin.csproj">
       <Project>{1143fe2f-79fc-4304-b2ed-288a66faac95}</Project>

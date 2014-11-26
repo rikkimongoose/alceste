@@ -5,10 +5,10 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.ServiceModel.Web;
-using Alceste.AudioDataService;
+using Alceste.WCFService.AudioDataService;
 using Alceste.Model;
-using Alceste.DataCache;
-using Alceste.DataControllers;
+using Alceste.WCFService.DataCache;
+using Alceste.WCFService.DataControllers;
 using Alceste.Plugin;
 using Alceste.Plugin.AudioController.InputFileFormat;
 

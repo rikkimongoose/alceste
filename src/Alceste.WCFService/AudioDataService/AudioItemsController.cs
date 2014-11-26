@@ -1,7 +1,7 @@
-﻿using Alceste.AudioDataService.DataSource.Fake;
+﻿using Alceste.WCFService.AudioDataService.DataSource.Fake;
 using Alceste.Plugin;
 using Alceste.Plugin.Asterisk;
-using Alceste.Plugin.Cisco;
+using Alceste.Plugin.CiscoWin;
 
 namespace Alceste.WCFService.AudioDataService
 {
