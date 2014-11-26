@@ -8,7 +8,7 @@ using Alceste.Plugin.AudioController.InputFileFormat;
 
 namespace Alceste.Plugin
 {
-    public class IAudioDataSourcePlugin
+    public interface IAudioDataSourcePlugin
     {
         string DataSourceId { get; }
         string DataSourceTitle { get; }

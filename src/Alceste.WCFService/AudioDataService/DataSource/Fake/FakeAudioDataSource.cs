@@ -2,8 +2,8 @@
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
-using Alceste.AudioDataService.DataSource.Utils;
-using Alceste.CommonTypes;
+using Alceste.WCFService.DataSource.Utils;
+using Alceste.Model;
 using Alceste.Plugin;
 using Alceste.Plugin.AudioController;
 using Alceste.Plugin.AudioController.InputFileFormat;

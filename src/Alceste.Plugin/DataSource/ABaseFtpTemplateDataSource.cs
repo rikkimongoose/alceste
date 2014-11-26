@@ -7,14 +7,13 @@ using System.ServiceModel.Web;
 using Alceste.Model;
 using Alceste.Plugin.AudioController.InputFileFormat;
 
-
 namespace Alceste.Plugin.DataSource
 {
-    public abstract class ABaseFtpTemplateDataSource<TConnection, TCommand, TDbDataReader, TDbParamener, TDbException> : ABaseFtpAudioDataSource
+    public abstract class ABaseFtpTemplateDataSource<TConnection, TCommand, TDbDataReader, TDbParameter, TDbException> : ABaseFtpAudioDataSource
         where TConnection : DbConnection, new()
         where TCommand : DbCommand, new()
         where TDbDataReader : DbDataReader
-        where TDbParamener : DbParameter, new()
+        where TDbParameter : DbParameter, new()
         where TDbException : DbException
     {
         public string ConnectionString { get; protected set; }
@@ -96,9 +95,9 @@ namespace Alceste.Plugin.DataSource
 
         public abstract List<IAudioDataInfo> ParseAudioFileInfo(DbDataReader dbDataReader, string fileId);
 
-        public static TDbParamener GetSqlParameter(string command, string value)
+        public static TDbParameter GetSqlParameter(string command, string value)
         {
-            return new TDbParamener
+            return new TDbParameter
             {
                 ParameterName = command,
                 Value = value
