@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1143FE2F-79FC-4304-B2ED-288A66FAAC95}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Alceste.Plugin</RootNamespace>
+    <AssemblyName>Alceste.Plugin</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NAudio">
+      <HintPath>..\packages\NAudio.1.7.2\lib\net35\NAudio.dll</HintPath>
+    </Reference>
+    <Reference Include="NAudio.WindowsMediaFormat">
+      <HintPath>..\packages\NAudio.Wma.1.0\lib\net20\NAudio.WindowsMediaFormat.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ABaseAudioDataSource.cs" />
+    <Compile Include="AudioController\AudioConverterController.cs" />
+    <Compile Include="AudioController\AudioFileInfo.cs" />
+    <Compile Include="AudioController\IAudioFileInfo.cs" />
+    <Compile Include="AudioController\IAudioImageInfo.cs" />
+    <Compile Include="AudioController\InputFileFormat\AiffInputFileReader.cs" />
+    <Compile Include="AudioController\InputFileFormat\IAudioDataInfo.cs" />
+    <Compile Include="AudioController\InputFileFormat\IInputFileFormatReader.cs" />
+    <Compile Include="AudioController\InputFileFormat\Mp3InputFileReader.cs" />
+    <Compile Include="AudioController\InputFileFormat\WaveInputFileReader.cs" />
+    <Compile Include="AudioController\IRawAudioFileInfo.cs" />
+    <Compile Include="AudioController\RawAudioFileInfo.cs" />
+    <Compile Include="Config\DbPluginConfig.cs" />
+    <Compile Include="Config\Element\DbElement.cs" />
+    <Compile Include="Config\Element\FtpElement.cs" />
+    <Compile Include="Config\Element\LocalDirectoryElement.cs" />
+    <Compile Include="Config\FtpPluginConfig.cs" />
+    <Compile Include="Config\LocalFilePluginConfig.cs" />
+    <Compile Include="Config\PluginConfig.cs" />
+    <Compile Include="IAudioDataSourcePlugin.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\UtilsController.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Alceste.Model\Alceste.Model.csproj">
+      <Project>{33da65e1-803a-4fd4-a9c3-126ecc3ac31d}</Project>
+      <Name>Alceste.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DataSource\" />
+    <Folder Include="Ftp\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

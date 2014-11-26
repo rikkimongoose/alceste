@@ -1,0 +1,15 @@
+﻿<Window x:Class="Alceste.LocalApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:audioStream="clr-namespace:Alceste.LocalApp.AudioStream"
+        Title="MainWindow" Height="350" Width="525" Name="mainWindow">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <audioStream:AudioStreamControl Grid.Row="0" DataContext="{Binding AudioStreamControlDataContext}" ItemId="{Binding Path=ItemId, Mode=TwoWay}" AudioInfoTemplate="{Binding Path=AudioInfoTemplate, Mode=TwoWay}" AudioSoundPicTemplate="{Binding Path=AudioSoundPicTemplate, Mode=TwoWay}" AudioSoundTemplate="{Binding Path=AudioSoundTemplate, Mode=TwoWay}" />
+        <ComboBox Grid.Row="1" ItemsSource="{Binding Path=ServerRecords}" SelectedItem="{Binding Path=SelectedServerRecord, Mode=TwoWay}" />
+    </Grid>
+</Window>
