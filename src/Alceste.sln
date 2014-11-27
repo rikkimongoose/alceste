@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alceste.WCFService", "Alceste.WCFService\Alceste.WCFService.csproj", "{15B3E0D2-6217-493A-A690-158C497F5318}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alceste.Model", "Alceste.Model\Alceste.Model.csproj", "{33DA65E1-803A-4FD4-A9C3-126ECC3AC31D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alceste.DAL", "Alceste.DAL\Alceste.DAL.csproj", "{94712C44-3C3A-4019-AB4C-29713D9CAEFB}"
@@ -15,16 +13,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alceste.Plugin.Asterisk", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alceste.Plugin.CiscoWin", "Alceste.Plugin.CiscoWin\Alceste.Plugin.CiscoWin.csproj", "{6E22B0E4-0460-449C-9D74-3D157DBC0B74}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alceste.RestService", "Alceste.RestService\Alceste.RestService.csproj", "{F888D006-F037-4EE1-8C9F-9939011F5809}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{15B3E0D2-6217-493A-A690-158C497F5318}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{15B3E0D2-6217-493A-A690-158C497F5318}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{15B3E0D2-6217-493A-A690-158C497F5318}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{15B3E0D2-6217-493A-A690-158C497F5318}.Release|Any CPU.Build.0 = Release|Any CPU
 		{33DA65E1-803A-4FD4-A9C3-126ECC3AC31D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{33DA65E1-803A-4FD4-A9C3-126ECC3AC31D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33DA65E1-803A-4FD4-A9C3-126ECC3AC31D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -49,6 +45,10 @@ Global
 		{6E22B0E4-0460-449C-9D74-3D157DBC0B74}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E22B0E4-0460-449C-9D74-3D157DBC0B74}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E22B0E4-0460-449C-9D74-3D157DBC0B74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F888D006-F037-4EE1-8C9F-9939011F5809}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F888D006-F037-4EE1-8C9F-9939011F5809}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F888D006-F037-4EE1-8C9F-9939011F5809}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F888D006-F037-4EE1-8C9F-9939011F5809}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
