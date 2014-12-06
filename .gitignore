@@ -181,3 +181,5 @@ UpgradeLog*.htm
 
 # Microsoft Fakes
 FakesAssemblies/
+*.config
+src/Alceste.RestService/Web.config

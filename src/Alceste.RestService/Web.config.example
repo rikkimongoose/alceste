@@ -45,7 +45,7 @@
       <provider invariantName="System.Data.SqlClient" type="System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer" />
     </providers>
   </entityFramework>
-  <Fake>
+    <Fake>
     <LocalDirectory path="~/MediaData" />
   </Fake>
   <AsteriskFTP>
