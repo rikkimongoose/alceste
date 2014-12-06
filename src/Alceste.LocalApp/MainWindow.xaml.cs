@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,11 +21,19 @@ namespace Alceste.LocalApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        private const string FileRecordsPath = "http://localhost:15319/Service.svc/getids";
+
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainWindowDataContext(FileRecordsPath);
+            DataContext = new MainWindowDataContext(FileRecordsIds);
+        }
+
+        public string FileRecordsIds
+        {
+            get
+            {
+                return string.Format("{0}/getids", ConfigurationManager.AppSettings[MainWindowDataContext.FileRecordsPathKey]);                
+            }
         }
     }
 }

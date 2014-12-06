@@ -3,6 +3,7 @@ using Alceste.Model;
 using Alceste.LocalApp.AudioStream;
 using Alceste.LocalApp.AudioStream.Loader;
 using Alceste.LocalApp.Notification;
+using System.Configuration;
 
 namespace Alceste.LocalApp
 {
@@ -15,18 +16,34 @@ namespace Alceste.LocalApp
         private readonly IAudioItemsListLoader _audioItemsListLoader;
         private AudioStreamControlDataContext _audioStreamControlDataContext;
 
+        public const string FileRecordsPathKey = "RestServiceUrl";
+
         public MainWindowDataContext()
         {
             _audioStreamControlDataContext = new AudioStreamControlDataContext()
             {
-                AudioInfoTemplate = "http://localhost:15319/Service.svc/getinfo/{0}",
-                AudioSoundPicTemplate = "http://localhost:15319/Service.svc/mediapic/{0}/%channelnum%/{1}/{2}",
-                AudioSoundTemplate = "http://localhost:15319/Service.svc/media/{0}/%channelnum%"
+                AudioInfoTemplate = AudioInfoTemplateUrl,
+                AudioSoundPicTemplate = AudioSoundPicTemplateUrl,
+                AudioSoundTemplate = AudioSoundTemplateUrl
             };
 
             NotifyPropertyChanged(() => AudioStreamControlDataContext);
         }
 
+        public string AudioInfoTemplateUrl
+        {
+            get { return ConfigurationManager.AppSettings[MainWindowDataContext.FileRecordsPathKey] + "/getinfo/{0}";  }
+        }
+
+        public string AudioSoundPicTemplateUrl
+        {
+            get { return ConfigurationManager.AppSettings[MainWindowDataContext.FileRecordsPathKey] + "/mediapic/{0}/%channelnum%/{1}/{2}"; }
+        }
+
+        public string AudioSoundTemplateUrl
+        {
+            get { return ConfigurationManager.AppSettings[MainWindowDataContext.FileRecordsPathKey] + "/media/{0}/%channelnum%"; }
+        }
 
         public MainWindowDataContext(string fileRecordsPath)
             : this()
