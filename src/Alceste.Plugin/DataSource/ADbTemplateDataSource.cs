@@ -9,7 +9,7 @@ using Alceste.Plugin.AudioController.InputFileFormat;
 
 namespace Alceste.Plugin.DataSource
 {
-    public abstract class ABaseFtpTemplateDataSource<TConnection, TCommand, TDbDataReader, TDbParameter, TDbException> : ABaseFtpAudioDataSource
+    public abstract class ADbTemplateDataSource<TConnection, TCommand, TDbDataReader, TDbParameter, TDbException> : ABaseAudioDataSource
         where TConnection : DbConnection, new()
         where TCommand : DbCommand, new()
         where TDbDataReader : DbDataReader

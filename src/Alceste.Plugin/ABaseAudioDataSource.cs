@@ -3,29 +3,34 @@ using System.Configuration;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Net;
+using System.ServiceModel.Web;
 using Alceste.Model;
 using Alceste.Plugin.AudioController;
 using Alceste.Plugin.AudioController.InputFileFormat;
 using Alceste.Plugin.Config;
+using Alceste.Plugin.DataLoader;
 
 namespace Alceste.Plugin
 {
-    public abstract class ABaseAudioDataSource<T> : IAudioDataSourcePlugin where T : PluginConfig
+    public abstract class ABaseAudioDataSource : IAudioDataSourcePlugin
     {
         public virtual string DataSourceId { get { return string.Empty; } }
         public virtual string DataSourceTitle { get { return string.Empty; } }
 
-        public T PluginConfig { get; protected set; }
+        public DbPluginConfig PluginConfig { get; protected set; }
+        protected ADataLoaderController LocalLoader { get; private set; }
 
         public ABaseAudioDataSource()
         {
-            PluginConfig = ConfigurationManager.GetSection(DataSourceId) as T;
+            PluginConfig = ConfigurationManager.GetSection(DataSourceId) as DbPluginConfig;
+            LocalLoader = DataLoaderGenerator.GetLoader(PluginConfig);
+
+            if (LocalLoader == null)
+                throw new WebFaultException<string>("Неизвестные формат настроек плагина", HttpStatusCode.BadRequest); 
         }
 
         public abstract List<MediaFileServerRecord> GetFilesList();
-
-        public abstract Stream GetMedia(string fileId, int channel);
-        public abstract IAudioFileInfo GetMediaImage(string fileId, string fileName, int width, int height, int channel);
 
         public abstract List<IAudioDataInfo> GetInfo(string fileId);
 
@@ -33,8 +38,23 @@ namespace Alceste.Plugin
         {
             var mem = new MemoryStream();
             soundImage.Save(mem, imageFormat);
-            mem.Position = 0;
+            mem.Seek(0, SeekOrigin.Begin);
             return mem;
+        }
+
+        public Stream GetMedia(string filepath, int channelNum)
+        {
+            return LocalLoader.GetFileByMask(filepath);
+        }
+
+        public IAudioFileInfo GetMediaImage(string fileId, string filepath, int width, int height, int channelNum)
+        {
+            var streamItem = LocalLoader.GetFileByMask(filepath);
+            var audioItem = AudioConverterController.Instance.GetAudioInfoWithImage(width, height, streamItem, filepath);
+            audioItem.AudioFileId = fileId;
+            audioItem.AudioFilePath = filepath;
+            audioItem.ChannelNumber = channelNum;
+            return audioItem;
         }
     }
 }

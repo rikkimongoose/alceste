@@ -34,6 +34,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FirebirdSql.Data.FirebirdClient.4.5.2.0\lib\net45\FirebirdSql.Data.FirebirdClient.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Security">
+      <HintPath>..\packages\Npgsql.2.2.3\lib\net45\Mono.Security.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data, Version=6.9.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MySql.Data.6.9.5\lib\net45\MySql.Data.dll</HintPath>
@@ -43,6 +46,12 @@
     </Reference>
     <Reference Include="NAudio.WindowsMediaFormat">
       <HintPath>..\packages\NAudio.Wma.1.0\lib\net20\NAudio.WindowsMediaFormat.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql">
+      <HintPath>..\packages\Npgsql.2.2.3\lib\net45\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess">
+      <HintPath>..\packages\odp.net.managed.121.1.2\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -73,20 +82,33 @@
     <Compile Include="Config\DbPluginConfig.cs" />
     <Compile Include="Config\Element\DbElement.cs" />
     <Compile Include="Config\Element\FtpElement.cs" />
+    <Compile Include="Config\Element\HttpElement.cs" />
     <Compile Include="Config\Element\LocalDirectoryElement.cs" />
     <Compile Include="Config\FtpPluginConfig.cs" />
-    <Compile Include="Config\LocalFilePluginConfig.cs" />
+    <Compile Include="Config\HttpPluginConfig.cs" />
+    <Compile Include="Config\FilePluginConfig.cs" />
     <Compile Include="Config\PluginConfig.cs" />
-    <Compile Include="Ftp\DataSource\ABaseFtpAudioDataSource.cs" />
-    <Compile Include="Ftp\DataSource\ABaseFtpFirebirdDataSource.cs" />
-    <Compile Include="Ftp\DataSource\ABaseFtpMySqlDataSource.cs" />
-    <Compile Include="Ftp\DataSource\ABaseFtpTemplateDataSource.cs" />
-    <Compile Include="Ftp\AFtpDataItem.cs" />
-    <Compile Include="Ftp\FtpController.cs" />
-    <Compile Include="Ftp\FtpControllerExecutionResult.cs" />
-    <Compile Include="Ftp\FtpDirectoryDataItem.cs" />
-    <Compile Include="Ftp\FtpFileRecordItem.cs" />
-    <Compile Include="Ftp\FtpLoader.cs" />
+    <Compile Include="DataLoader\ADataLoaderController.cs" />
+    <Compile Include="DataLoader\AWebLoaderDataController.cs" />
+    <Compile Include="DataLoader\DataControllerWithLoginConfig.cs" />
+    <Compile Include="DataLoader\DataLoaderExecutionResult.cs" />
+    <Compile Include="DataLoader\DataLoaderGenerator.cs" />
+    <Compile Include="DataLoader\DirectoryDataItem.cs" />
+    <Compile Include="DataLoader\DataFileItem.cs" />
+    <Compile Include="DataLoader\DataControllerConfig.cs" />
+    <Compile Include="DataLoader\File\FileController.cs" />
+    <Compile Include="DataLoader\File\FileControllerConfig.cs" />
+    <Compile Include="DataLoader\Ftp\FtpControllerConfig.cs" />
+    <Compile Include="DataLoader\Http\HttpControllerConfig.cs" />
+    <Compile Include="DataLoader\Http\HttpController.cs" />
+    <Compile Include="DataSource\AFileDataSource.cs" />
+    <Compile Include="DataSource\AFirebirdDataSource.cs" />
+    <Compile Include="DataSource\AMsSqlDataSource.cs" />
+    <Compile Include="DataSource\AMySqlDataSource.cs" />
+    <Compile Include="DataSource\ADbTemplateDataSource.cs" />
+    <Compile Include="DataLoader\Ftp\FtpController.cs" />
+    <Compile Include="DataSource\AOracleDataSource.cs" />
+    <Compile Include="DataSource\APostgreDataSource.cs" />
     <Compile Include="IAudioDataSourcePlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\UtilsController.cs" />
@@ -97,9 +119,7 @@
       <Name>Alceste.Model</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Http\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />

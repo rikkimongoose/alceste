@@ -8,26 +8,13 @@ using Alceste.Plugin.Utils;
 
 namespace Alceste.Plugin.CiscoWin
 {
-    public sealed class CiscoWindowsFtpDataSource : ABaseFtpFirebirdDataSource
+    public sealed class CiscoWindowsFtpDataSource : AFirebirdDataSource
     {
         public override string DataSourceId { get { return "CiscoWinFTP"; } }
         public override string DataSourceTitle { get { return "Cisco by FTP (Windows)"; } }
 
         public const string DurationStartColumn = "STARTDATE";
         public const string DurationEndColumn = "ENDDATE";
-
-        #region Singletone
-        private static CiscoWindowsFtpDataSource _instance;
-
-        public static IAudioDataSourcePlugin Instance
-        {
-            get
-            {
-                if (_instance == null)
-                    _instance = new CiscoWindowsFtpDataSource();
-                return _instance;
-            }
-        }
 
         private CiscoWindowsFtpDataSource()
         {
@@ -37,7 +24,6 @@ namespace Alceste.Plugin.CiscoWin
                 "SELECT {0}, {1}, {2}, {3} FROM {4} WHERE {0} = @FileId;",
                 PluginConfig.Database.KeyColumn, PluginConfig.Database.PathColumn, DurationStartColumn, DurationEndColumn, PluginConfig.Database.Table);
         }
-        #endregion
 
         public override MediaFileServerRecord ParseMediaFileServerRecord(DbDataReader dbDataReader)
         {

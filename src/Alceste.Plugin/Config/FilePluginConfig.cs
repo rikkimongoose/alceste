@@ -3,7 +3,7 @@ using Alceste.Plugin.Config.Element;
 
 namespace Alceste.Plugin.Config
 {
-    public class LocalFilePluginConfig : PluginConfig
+    public class FilePluginConfig : DbPluginConfig
     {
         public const string LocalDirectoryKey = "LocalDirectory";
         [ConfigurationProperty(LocalDirectoryKey)]

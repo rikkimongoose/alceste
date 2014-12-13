@@ -1,7 +1,7 @@
 ﻿using System.Configuration;
 namespace Alceste.Plugin.Config.Element
 {
-    public sealed class FtpElement : ConfigurationElement
+    public sealed class HttpElement : ConfigurationElement
     {
         private const string DbTypeKey = "server";
         [ConfigurationProperty(DbTypeKey, DefaultValue = "", IsKey = true, IsRequired = true)]
@@ -12,7 +12,7 @@ namespace Alceste.Plugin.Config.Element
         }
 
         private const string LoginKey = "login";
-        [ConfigurationProperty(LoginKey, DefaultValue = "", IsRequired = true)]
+        [ConfigurationProperty(LoginKey, DefaultValue = "", IsRequired = false)]
         public string Login
         {
             get { return (string)this[LoginKey]; }
@@ -27,12 +27,12 @@ namespace Alceste.Plugin.Config.Element
             set { this[PasswordKey] = value; }
         }
 
-        private const string IsFtpsKey = "ftps";
-        [ConfigurationProperty(IsFtpsKey, DefaultValue = false, IsRequired = false)]
-        public bool IsFtps
+        private const string IsHttpsKey = "https";
+        [ConfigurationProperty(IsHttpsKey, DefaultValue = false, IsRequired = false)]
+        public bool IsHttps
         {
-            get { return (bool)this[IsFtpsKey]; }
-            set { this[IsFtpsKey] = value; }
+            get { return (bool)this[IsHttpsKey]; }
+            set { this[IsHttpsKey] = value; }
         }
     }
 }

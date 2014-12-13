@@ -3,7 +3,7 @@ using Alceste.Plugin.Config.Element;
 
 namespace Alceste.Plugin.Config
 {
-    public class FtpPluginConfig : DbPluginConfig
+    public sealed class FtpPluginConfig : DbPluginConfig
     {
         public const string FTPKey = "FTP";
         [ConfigurationProperty(FTPKey)]

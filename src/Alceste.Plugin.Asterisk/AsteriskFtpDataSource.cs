@@ -10,7 +10,7 @@ using Alceste.Plugin.Utils;
 namespace Alceste.Plugin.Asterisk
 {
 
-    public sealed class AsteriskFtpDataSource : ABaseFtpMySqlDataSource
+    public sealed class AsteriskFtpDataSource : AMySqlDataSource
     {
         public override string DataSourceId { get { return "AsteriskFTP"; } }
         public override string DataSourceTitle { get { return "Asterisk by FTP"; } }
@@ -20,19 +20,6 @@ namespace Alceste.Plugin.Asterisk
 
         public const string AsteriskFtpWaveFormat = "128 WAV PCM";
 
-        #region Singletone
-        private static AsteriskFtpDataSource _instance;
-
-        public static IAudioDataSourcePlugin Instance
-        {
-            get
-            {
-                if (_instance == null)
-                    _instance = new AsteriskFtpDataSource();
-                return _instance;
-            }
-        }
-
         private AsteriskFtpDataSource()
         {
             KeyColumn = PluginConfig.Database.KeyColumn;
@@ -41,7 +28,7 @@ namespace Alceste.Plugin.Asterisk
                 "SELECT {0}, {1}, {3}, {4} FROM {2} WHERE lastapp=\"Queue\" AND recordingfile != \"\" AND {0} = @FileId;",
                 PluginConfig.Database.KeyColumn, PluginConfig.Database.PathColumn, PluginConfig.Database.Table, ColumnDuration, ColumnCallDate);
         }
-        #endregion
+
         public override MediaFileServerRecord ParseMediaFileServerRecord(DbDataReader dbDataReader)
         {
             return new MediaFileServerRecord
@@ -83,7 +70,7 @@ namespace Alceste.Plugin.Asterisk
         private void TryAddAudioDataToList(List<IAudioDataInfo> audioDataInfoList, string fileId, string filePath, TimeSpan length, int channelNum = 1)
         {
 
-            if (LocalFtpLoader.IsExistFileFTP(filePath))
+            if (LocalLoader.FileExists(filePath))
             {
                 audioDataInfoList.Add(new AsteriskAudioFileInfo
                 {

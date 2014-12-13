@@ -11,6 +11,7 @@ using Alceste.RestService.DataCache;
 using Alceste.RestService.DataControllers;
 using Alceste.Plugin;
 using Alceste.Plugin.AudioController.InputFileFormat;
+using Alceste.Plugin.Utils;
 
 namespace Alceste.RestService
 {
@@ -30,15 +31,7 @@ namespace Alceste.RestService
         {
             switch (AppSettings.CallCenterDriver)
             {
-                case AsteriskFTPConfig:
-                    _audioDataSource = AudioItemsController.GetAsteriskFTPSource();
-                    break;
-                case CiscoWinFTPConfig:
-                    _audioDataSource = AudioItemsController.GetCiscoWindowsFTPSource();
-                    break;
-                case FakeConfig:
-                    _audioDataSource = AudioItemsController.GetFakeAudioSource();
-                    break;
+                
                 default:
                     throw new WebFaultException<string>("Не найден драйвер поддержки колл-центра. Проверьте параметр CallCenterDriver в настройках сервера.", HttpStatusCode.BadRequest);
             }

@@ -4,7 +4,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using Alceste.Model;
 using Alceste.Plugin.AudioController.InputFileFormat;
-using Alceste.Plugin.Ftp;
+using Alceste.Plugin.DataLoader;
 
 namespace Alceste.Plugin.Utils
 {
@@ -86,9 +86,9 @@ namespace Alceste.Plugin.Utils
             return fileName.Replace(" ", string.Empty);
         }
 
-        public static IList<FtpFileRecordItem> ParseFtpFileItems(List<string> filesStr)
+        public static IList<DataFileItem> ParseFtpFileItems(List<string> filesStr)
         {
-            var ftpFileRecordItems = new List<FtpFileRecordItem>();
+            var ftpFileRecordItems = new List<DataFileItem>();
             filesStr.ForEach(item =>
             {
                 string[] itemFields = item.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries);
@@ -106,7 +106,7 @@ namespace Alceste.Plugin.Utils
                 long.TryParse(itemFields[fieldSize], out size);
                 fileName = itemFields[fieldFileName];
 
-                ftpFileRecordItems.Add(new FtpFileRecordItem
+                ftpFileRecordItems.Add(new DataFileItem
                 {
                     Date = date,
                     Size = size,
@@ -170,6 +170,14 @@ namespace Alceste.Plugin.Utils
         public static TimeSpan StartEndToTimeSpan(DateTime startDateTime, DateTime endDateTime)
         {
             return endDateTime - startDateTime;
+        }
+        
+        public static MemoryStream ReadToMemory(Stream input)
+        {
+            var ms = new MemoryStream();
+            input.CopyTo(ms);
+            ms.Seek(0, SeekOrigin.Begin);
+            return ms;
         }
     }
 }
