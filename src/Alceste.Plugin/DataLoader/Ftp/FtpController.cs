@@ -54,5 +54,10 @@ namespace Alceste.Plugin.DataLoader.Ftp
         {
             throw new NotImplementedException();
         }
+
+        public override IList<MemoryStream> GetFilesByMask(string filepath)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
