@@ -44,6 +44,34 @@ namespace Alceste.Plugin.DataLoader
             return ExecuteRequest(request);
         }
 
+        public virtual DataLoaderExecutionResult<List<MemoryStream>> DownloadFilesByMask(string filePath)
+        {
+            if (!UtilsController.HasWildcards(filePath))
+            {
+                var result = GetFile(filePath);
+                if (result.ExecutionCode != DataLoaderExecutionCode.Ok || result.ResultItem == null)
+                    return new DataLoaderExecutionResult<List<MemoryStream>>(result.ExecutionCode);
+                return new DataLoaderExecutionResult<List<MemoryStream>>(new List<MemoryStream> { result.ResultItem }, result.ExecutionCode);
+            }
+
+            var dirUrl = UtilsController.GetDirUrlFromPath(filePath);
+            var fileNameMask = UtilsController.GetFileNameFromPath(filePath);
+            var files = GetDirectoryList(filePath);
+            if (files.ExecutionCode != DataLoaderExecutionCode.Ok || files.ResultItem == null)
+                return new DataLoaderExecutionResult<List<MemoryStream>>(files.ExecutionCode);
+            var fileItems = files.ResultItem.Select(item => UtilsController.СompareWithWildcards(item.FileName, fileNameMask)).ToList();
+            var streamResults = new List<MemoryStream>();
+            foreach(var fileItem in fileItems)
+            {
+                var fileItemFullPath = string.Format("{0}/{1}", dirUrl, fileItem);
+                var request = CreateRequestDownload(filePath);
+                var requestResult = ExecuteRequest(request);
+                if (requestResult.ExecutionCode == DataLoaderExecutionCode.Ok)
+                    streamResults.Add(requestResult.ResultItem);
+            }
+            return new DataLoaderExecutionResult<List<MemoryStream>>(streamResults);
+        }
+
         public virtual DataLoaderExecutionResult<IList<DataFileItem>> GetDirectoryList(string filePath)
         {
             var request = CreateRequestDirectory(filePath);
@@ -53,6 +81,12 @@ namespace Alceste.Plugin.DataLoader
             var filesStr = UtilsController.GetListFromStream(dirListStream.ResultItem);
             dirListStream.ResultItem.Close();
             return new DataLoaderExecutionResult<IList<DataFileItem>>(UtilsController.ParseFtpFileItems(filesStr));
+        }
+
+        public override IList<DataFileItem> GetFilesList(string filePath)
+        {
+            var filesList = GetDirectoryList(filePath);
+            return filesList.ResultItem;
         }
 
         public abstract TWebRequest CreateRequestDownload(string filePath);
