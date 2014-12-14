@@ -42,10 +42,5 @@ namespace Alceste.Plugin.DataLoader.Http
         {
             throw new NotImplementedException();
         }
-
-        public override IList<System.IO.MemoryStream> GetFilesByMask(string filepath)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

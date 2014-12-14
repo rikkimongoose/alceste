@@ -46,7 +46,7 @@ namespace Alceste.Plugin.DataLoader.File
             return GetFileStream(files[0]);
         }
 
-        public override IList<DataFileItem> GetFilesList(string filePath)
+        public List<DataFileItem> GetFilesList(string filePath)
         {
             var files = Directory.GetFiles(filePath).ToList();
             return files.Select(file => 
@@ -56,7 +56,7 @@ namespace Alceste.Plugin.DataLoader.File
              }).ToList();
         }
 
-        public override IList<MemoryStream> GetFilesByMask(string filepath)
+        public List<MemoryStream> GetFilesByMask(string filepath)
         {
             if (!UtilsController.HasWildcards(filepath))
                 return new List<MemoryStream>() { GetFileStream(filepath) };

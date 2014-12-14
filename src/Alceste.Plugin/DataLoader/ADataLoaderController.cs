@@ -28,10 +28,6 @@ namespace Alceste.Plugin.DataLoader
 
         public abstract MemoryStream GetFileByMask(string filepath);
 
-        public abstract IList<MemoryStream> GetFilesByMask(string filepath);
-
-        public abstract IList<DataFileItem> GetFilesList(string filePath);
-
         public abstract bool FileExists(string filePath);
     }
 

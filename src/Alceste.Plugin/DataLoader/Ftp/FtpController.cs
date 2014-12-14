@@ -52,12 +52,9 @@ namespace Alceste.Plugin.DataLoader.Ftp
 
         public override FtpWebRequest CreateRequestDownload(string filePath)
         {
-            throw new NotImplementedException();
-        }
-
-        public override IList<MemoryStream> GetFilesByMask(string filepath)
-        {
-            throw new NotImplementedException();
+            var request = CreateRequest(filePath);
+            request.Method = WebRequestMethods.Ftp.DownloadFile;
+            return request;
         }
     }
 }

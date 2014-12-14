@@ -83,12 +83,6 @@ namespace Alceste.Plugin.DataLoader
             return new DataLoaderExecutionResult<IList<DataFileItem>>(UtilsController.ParseFtpFileItems(filesStr));
         }
 
-        public override IList<DataFileItem> GetFilesList(string filePath)
-        {
-            var filesList = GetDirectoryList(filePath);
-            return filesList.ResultItem;
-        }
-
         public abstract TWebRequest CreateRequestDownload(string filePath);
         public abstract TWebRequest CreateRequestDirectory(string filePath);
 
